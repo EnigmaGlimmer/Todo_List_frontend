@@ -19,7 +19,7 @@ function TodoList() {
         }
     };
 
-    const addTask = async(taskName) => {
+    const addTask = async (taskName) => {
         try {
             const response = await taskService.addTask(taskName);
             setTasks([...tasks, response.data]);
@@ -28,45 +28,45 @@ function TodoList() {
         }
     };
 
-    const toggleComplete = async(_id) => {
+    const toggleComplete = async (_id) => {
         const task = tasks.find((task) => task._id === _id);
-        if(task) {
+        if (task) {
             try {
-                const updateTask = {...task, completed:!task.completed };
+                const updateTask = { ...task, completed: !task.completed };
                 await taskService.toggleComplete(_id);
-                setTasks(tasks.map((task) => (task._id === _id ? updateTask: task)));
+                setTasks(tasks.map((task) => (task._id === _id ? updateTask : task)));
             } catch (error) {
                 console.log("ToggleComplete Error", error);
             }
         }
     };
 
-    const handleEdit = async(_id, task) =>{
+    const handleEdit = async (_id, task) => {
         const newTaskName = prompt("Edit taskName", task.title);
-        if(newTaskName !== null && newTaskName !== ""){
+        if (newTaskName !== null && newTaskName !== "") {
             try {
-                const updateTask = {...task, title: newTaskName};
+                const updateTask = { ...task, title: newTaskName };
                 await taskService.updateTask(_id, updateTask);
-                setTasks(tasks.map((t) => (t._id === task._id ? updateTask: t)));
+                setTasks(tasks.map((t) => (t._id === task._id ? updateTask : t)));
             } catch (error) {
                 console.log("Update data Error!", error);
             }
         }
     };
 
-    const handleDelete = async(_id) => {
+    const handleDelete = async (_id) => {
         try {
             await taskService.deleteTask(_id);
             setTasks(tasks.filter((task) => task._id !== _id));
-        } catch(error) {
+        } catch (error) {
             console.log("Delete the Task Error", error);
         }
     };
 
     return (
         <>
-            <AddTask addTask = {addTask}/>
-            {tasks.map((task) => 
+            <AddTask addTask={addTask} />
+            {tasks.map((task) =>
                 <TodoItem
                     key={task._id}
                     task={task}

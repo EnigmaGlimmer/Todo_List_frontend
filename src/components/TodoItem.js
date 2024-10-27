@@ -1,19 +1,19 @@
 import { Box, Card, CardContent, Checkbox, IconButton, Typography } from "@mui/material";
-import {Delete, Edit} from "@mui/icons-material"
+import { Delete, Edit } from "@mui/icons-material"
 
-function TodoItem({task, toggleComplete, handleEdit, handleDelete}) {
+function TodoItem({ task, toggleComplete, handleEdit, handleDelete }) {
   return (
     <>
-      <Card variant="outlined" sx={{marginBottom: 2}}>
-        <CardContent sx={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-          <Box sx={{display:"flex", alignItems:"center"}}>
-            <Checkbox 
-              checked = {task.completed}
-              onChange = {() => toggleComplete(task._id)}
+      <Card variant="outlined" sx={{ marginBottom: 2 }}>
+        <CardContent sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Checkbox
+              checked={task.completed}
+              onChange={() => toggleComplete(task._id)}
             />
-            <Typography 
+            <Typography
               variant="body1"
-              style={{textDecoration: task.completed ? "line-through": "none"}}  
+              style={{ textDecoration: task.completed ? "line-through" : "none" }}
             >
               {task.title}
             </Typography>

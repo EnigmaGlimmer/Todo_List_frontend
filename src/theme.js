@@ -9,7 +9,7 @@ const theme = createTheme({
             main: "#dc004e",
         },
     },
-    typography : {
+    typography: {
         fontFamily: 'Roboto, sans-serif',
     },
 });
