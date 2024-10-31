@@ -1,24 +1,22 @@
-import { Container, CssBaseline, Grid, ThemeProvider, Typography } from "@mui/material";
-import theme from "./theme";
-import TodoList from "./components/TodoList";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import { AutoProvider } from './context/AuthContext';
+import TodoList from './components/Todo/TodoList';
 
-function App() {
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container maxWidth="md">
-        <Typography variant="h3" align="center" gutterBottom>
-          Todo List
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TodoList />
-          </Grid>
-        </Grid>
-      </Container>
-    </ThemeProvider>
-  );
-}
+const App = () => {
+ return (
+  <AutoProvider>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Navigate to="todo" />} />
+        <Route path='/todos' element={<TodoList />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
+    </Router>
+  </AutoProvider>
+ )
+};
 
 export default App;
